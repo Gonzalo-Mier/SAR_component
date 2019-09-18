@@ -3,7 +3,7 @@
 SAR is a 8 bits ADC converter implemented in LTspice IV.
 
 <p align="center">
-  <img src="imgs/sar" width="350" title="SAR converter">
+  <img src="imgs/sar" width="600" title="SAR converter">
 </p>
 
 To know more about SAR converter and how it works, check the [SAR wikipedia page](https://en.wikipedia.org/wiki/Successive_approximation_ADC)
@@ -19,7 +19,7 @@ To run the code, [LTspice IV](https://www.analog.com/en/design-center/design-too
 Open the [SAR TEST file](src/SAR_TEST.asc) on LTspice IV.
 
 <p align="center">
-  <img src="imgs/sar_test" width="350" title="Example of the SAR converter use.">
+  <img src="imgs/sar_test" width="600" title="Example of the SAR converter use.">
 </p>
 
 To run the simulation, click the running man in the upper menu.
@@ -34,14 +34,14 @@ Change the ".tran" line to change the simulation time. All the other simulation 
 
 ### Break down into end to end tests
 
-To different examples changing the simulation time and the input senoid frecuency are:
+Different examples changing the simulation time and the input senoid frecuency are:
 
 <p align="center">
-  <img src="imgs/output_100m" width="350" title="Output with 100ms of simulation">
+  <img src="imgs/output_100m" width="450" title="Output with 100ms of simulation">
 </p>
 
 <p align="center">
-  <img src="imgs/output_400m" width="350" title="Output with 400ms of simulation">
+  <img src="imgs/output_400m" width="450" title="Output with 400ms of simulation">
 </p>
 
 
