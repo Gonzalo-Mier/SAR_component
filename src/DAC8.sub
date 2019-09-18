@@ -1,0 +1,39 @@
+********************************************************************************
+*
+*				DAC8 - 8bit DAC
+*
+********************************************************************************
+*
+* [PARAMETERS]
+*
+* Vhigh,Vlow[V]	= logic levels;
+* Vt	[V]	= input threshold voltage;
+*
+* - Hidden:
+*
+* td	[s]	= LTspice's specific for A-devices, default 10ns;
+* An A-device is a Linear Technology's proprietary special function/mixed mode 
+* circuit element. In this case I use a SCHMITT trigger
+*
+* [CHARACTERISTICS]
+*
+* - There is no reference voltage but the output ranges from <Vlow:Vhigh>, which
+* can have any value. Compatibility with any logic levels at the input is done
+* by {Vt}. E.g.: Vhigh=12, Vlow=-12 => Vt=(Vhigh+Vlow)/2=0V, but if the input is
+* <0:5>[V], then {Vt} needs to be set to anything whithin input's range, usually
+* half (Vt=2.5).
+*
+********************************************************************************
+.subckt DAC8 D[0] D[1] D[2] D[3] D[4] D[5] D[6] D[7] out
+.param vlow=0 vhigh=1 vt=0.5 td=1p
+A7 D[7] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**8}
+A6 D[6] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**7}
+A5 D[5] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**6}
+A4 D[4] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**5}
+A3 D[3] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**4}
+A2 D[2] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**3}
+A1 D[1] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**2}
+A0 D[0] 0 0 0 0 0 out 0 SCHMITT vt={vt} vh=0 td={td} vlow={vlow} vhigh={vhigh} rout={2**1}
+;Gout 0 out Data 0 1
+;Rout out 0 1
+.ends DAC8

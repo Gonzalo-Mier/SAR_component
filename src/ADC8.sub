@@ -1,0 +1,41 @@
+********************************************************************************
+*
+*				ADC16 - 16bit ADC
+*
+********************************************************************************
+*
+* [SYMBOL]
+*
+* in		= analog input, floating;
+* Q[0:7]	= binary outputs, starting with MSB, 1 Ohm.
+*
+* [PARAMETERS]
+*
+* N=<1:8>	= number of bits for the conversion;
+*
+* - Hidden:
+*
+* tripdv,tripdt	= LTspice's specific for B-sources, default 1V/1us;
+* B-source is an Arbitrary Behavioral Voltage or Current Source
+* There are 16 B-current sources in this ADC16 function
+*
+* [NOTES]
+*
+* - Input should be between 0V and 1V, it will work otherwise, but wrong.
+* - It only outputs logic levels <0,1> because testing showed that, the way it
+* is now, even Vlow=-1 and Vhigh=1 are enough to double the simulation time.
+*
+********************************************************************************
+.subckt ADC8 in
++ Q[0] Q[1] Q[2] Q[3] Q[4] Q[5] Q[6] Q[7]
+.param N=8 tripdv=1 tripdt=1n
+.func adc(x) {if(x<N,round(v(in)*2**x-int(v(in)*2**x)),0)}
+B0 0 Q[0] i=adc(00) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B1 0 Q[1] i=adc(1) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B2 0 Q[2] i=adc(2) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B3 0 Q[3] i=adc(3) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B4 0 Q[4] i=adc(4) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B5 0 Q[5] i=adc(5) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B6 0 Q[6] i=adc(6) rpar=1 tripdv={tripdv} tripdt={tripdt}
+B7 0 Q[7] i=adc(7) rpar=1 tripdv={tripdv} tripdt={tripdt}
+.ends ADC8
